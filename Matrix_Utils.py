@@ -22,7 +22,28 @@ def is_matrix_equals(M1,M2):
 
     else:
         raise Exception("equals_matrix function not support ndim = %d"%(M1.ndim));
-    
+
+def matrix_read(filename):
+    row = 0;
+    col = -1;
+    for line in file(filename, "r"):    
+        row += 1;
+        if -1 == col:
+            line = line.strip();
+            eles = line.split("\t");
+            col  = len(eles);
+
+    m = zeros([row,col]);
+    i = 0;
+    j = 0;
+    for line in file(filename, "r"):
+        line = line.strip();
+        eles = line.split("\t");
+        for j in xrange(len(eles)):
+            m[i,j] = float(eles[j]);        
+        i += 1;    
+
+    return m;
 
 def matrix_show(M):
     if 2 == M.ndim:
