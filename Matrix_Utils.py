@@ -23,6 +23,18 @@ def is_matrix_equals(M1,M2):
     else:
         raise Exception("equals_matrix function not support ndim = %d"%(M1.ndim));
 
+def matrix_Ak(A,k): # A_k is the best rank-k approximination to A
+    m,n = A.shape;
+    if k > min(m,n):
+        raise Exception("matrix_Ak requires k <= min(m,n), but m=%d, n=%d, k=%d"%(m,n,k));
+
+    u,d,vt = linalg.svd(A);
+    
+    Ak = zeros([m,n]);
+    for i in xrange(k):
+        Ak += dot(u[:,i:i+1],vt[i:i+1,:]) * d[i];
+    return Ak;
+
 def matrix_read(filename):
     row = 0;
     col = -1;
