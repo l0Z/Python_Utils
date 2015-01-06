@@ -50,7 +50,13 @@ def matrix_show(M):
         r,c = M.shape;
         for i in xrange(r):
             for j in xrange(c):
-                if M[i,j] >= 0:
+                if (i > 3 and i < r-3) or (j > 3 and j < c - 3):
+                    continue;
+                elif i == 3 and i < r -3:
+                    print " ...\t",;
+                elif j == 3 and j < c -3:
+                    print " ...\t",;   
+                elif M[i,j] >= 0:
                     print " %.3f\t"%M[i,j],
                 else:
                     print "%.3f\t"%M[i,j],
@@ -58,7 +64,11 @@ def matrix_show(M):
     elif 1 == M.ndim:
         l = len(M);
         for i in xrange(l):
-            if M[i] >= 0:
+            if i > 3 and i < l-3:
+                continue;
+            elif i == 3 and i < l-3:
+                print " ...\t",
+            elif M[i] >= 0:
                 print " %.3f\t"%M[i],
             else:
                 print "%.3f\t"%M[i],
