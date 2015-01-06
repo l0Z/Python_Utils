@@ -23,6 +23,31 @@ def is_matrix_equals(M1,M2):
     else:
         raise Exception("equals_matrix function not support ndim = %d"%(M1.ndim));
 
+def matrix_pinv(A): # return pinv(A)
+    u,d1,vt = linalg.svd(R);
+    d       = np.zeros([m,n]);
+    for i in xrange(min(m,n)):
+        if not Float_Utils.eq(d1[i],0.0):
+            d[i,i] = 1.0/d1[i];
+
+    PINV = dot(dot(transpose(vt), transpose(d)), transpose(u));
+    return PINV
+
+def matrix_A_dot_PI(A,PI): #return A * PI. PI is the permutation matrix"
+    if 1 != PI.ndim:
+        raise Exception("matrix_A_dot_PI requires PI.ndim = 1, but PI.ndim=%d"%PI.ndim);
+
+    m,n = A.shape;
+    k   = len(PI);
+    API = zeros([m,k]);
+
+    for i in xrange(k):
+        c            = PI[i];
+        API[i:i+1,:] = copy(A[c:c+1,:]);
+
+    return API;
+  
+
 def matrix_Ak(A,k): # A_k is the best rank-k approximination to A
     m,n = A.shape;
     if k > min(m,n):
