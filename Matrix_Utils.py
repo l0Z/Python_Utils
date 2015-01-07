@@ -1,6 +1,8 @@
 #/bin/python
 from numpy import *;
 
+import Float_Utils;
+
 def is_matrix_equals(M1,M2):
     if 2 == M1.ndim: 
         if M1.shape != M2.shape:
@@ -24,8 +26,9 @@ def is_matrix_equals(M1,M2):
         raise Exception("equals_matrix function not support ndim = %d"%(M1.ndim));
 
 def matrix_pinv(A): # return pinv(A)
-    u,d1,vt = linalg.svd(R);
-    d       = np.zeros([m,n]);
+    m,n     = A.shape;
+    u,d1,vt = linalg.svd(A);
+    d       = zeros([m,n]);
     for i in xrange(min(m,n)):
         if not Float_Utils.eq(d1[i],0.0):
             d[i,i] = 1.0/d1[i];
@@ -43,7 +46,7 @@ def matrix_A_dot_PI(A,PI): #return A * PI. PI is the permutation matrix"
 
     for i in xrange(k):
         c            = PI[i];
-        API[i:i+1,:] = copy(A[c:c+1,:]);
+        API[:,i:i+1] = copy(A[:,c:c+1]);
 
     return API;
   
@@ -97,7 +100,10 @@ def matrix_show(M):
                     print " %.3f\t"%M[i,j],
                 else:
                     print "%.3f\t"%M[i,j],
-            print "";
+            if i>3 and i < r - 3:
+                continue;
+            else:
+                print "";
     elif 1 == M.ndim:
         l = len(M);
         for i in xrange(l):
