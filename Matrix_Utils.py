@@ -93,13 +93,13 @@ def matrix_show(M):
                 if (i > 3 and i < r-3) or (j > 3 and j < c - 3):
                     continue;
                 elif i == 3 and i < r -3:
-                    print " ...\t",;
+                    print "    ...\t\t",;
                 elif j == 3 and j < c -3:
-                    print " ...\t",;   
+                    print "    ...\t\t",;   
                 elif M[i,j] >= 0:
-                    print " %.3f\t"%M[i,j],
+                    print " %.6f\t"%M[i,j],
                 else:
-                    print "%.3f\t"%M[i,j],
+                    print "%.6f\t"%M[i,j],
             if i>3 and i < r - 3:
                 continue;
             else:
@@ -110,11 +110,11 @@ def matrix_show(M):
             if i > 3 and i < l-3:
                 continue;
             elif i == 3 and i < l-3:
-                print " ...\t",
+                print "    ...\t\t",
             elif M[i] >= 0:
-                print " %.3f\t"%M[i],
+                print " %.6f\t"%M[i],
             else:
-                print "%.3f\t"%M[i],
+                print "%.6f\t"%M[i],
         print "";
     else:
         raise Exception("show_matrix not support ndim=%d yet"%M.ndim);
