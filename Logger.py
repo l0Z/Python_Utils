@@ -12,7 +12,7 @@ def initlog(opts, project):
     global instance;
     global handler;
     instance.removeHandler(handler);
-    instance = logging.getLogger("project");
+    instance = logging.getLogger(project);
     handler  = None;
 
     if "log" in opts:
