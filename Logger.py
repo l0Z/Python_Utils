@@ -2,17 +2,17 @@
 import logging;
 import sys;
 
-instance = logging.getLogger("ColumnSubsetSelectionLogger");
+instance = logging.getLogger("Lili's logger");
 instance.setLevel(logging.INFO);
 handler  = logging.StreamHandler(sys.stderr);
 handler.setLevel(logging.INFO);
 instance.addHandler(handler);
 
-def initlog(opts):
+def initlog(opts, project):
     global instance;
     global handler;
     instance.removeHandler(handler);
-    instance = logging.getLogger("ColumnSubsetSelectionLogger");
+    instance = logging.getLogger(project);
     handler  = None;
 
     if "log" in opts:
@@ -20,6 +20,7 @@ def initlog(opts):
     else:
         handler = logging.StreamHandler(sys.stderr);
 
+    instance.setLevel(logging.INFO);
     if "level" in opts:
         if   "debug" == opts["level"].lowcase():
             instance.setLevel(logging.DEBUG);
