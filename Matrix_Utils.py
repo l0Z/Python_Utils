@@ -10,7 +10,7 @@ def is_matrix_equals(M1,M2):
         r,c = M1.shape;
         for i in xrange(r):
             for j in xrange(c):
-                if abs(M1[i,j] - M2[i,j]) >= 1e-9:
+                if abs(M1[i,j] - M2[i,j]) >= 1e-6:
                     return False;
         return True;
     elif 1 == M1.ndim:
@@ -18,7 +18,7 @@ def is_matrix_equals(M1,M2):
             return False;
         r = M1.shape[0];
         for i in xrange(r):
-            if abs(M1[i] - M2[i]) >= 1e-9:
+            if abs(M1[i] - M2[i]) >= 1e-6:
                 return False;
         return True;
 
